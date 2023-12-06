@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idiomas</title>
+    <link rel="shortcut icon" href="Esferas-png-Queroimagem.com-_21_.ico" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <img src="1 4.png" alt="" class="imagem">
+        <div id="idiomas">
+            <button onclick="Escolher('en')"><img src="bandeira-estados-unidos.png" alt=""></button>
+            <button onclick="Escolher('ptbr')"><img src="2-bandeira-do-brasil.png" alt=""></button>
+            <button onclick="Escolher('es')"><img src="bandeira-da-espanha.png" alt=""></button>
+        </div>
+    </header>
+
+    <div class="conteudos">
+        <div class="conteudo" id="paragrafo1"></div>
+        <div class="conteudo" id="paragrafo2"></div>
+        <div class="conteudo" id="paragrafo3"></div>
+        <div class="conteudo" id="paragrafo4"></div>
+        <div class="conteudo" id="paragrafo5"></div>
+    </div>
+
+    <script>
+        function Escolher(idioma) {
+            fetch(`textos_${idioma}.json`)
+                .then(resposta => resposta.json())
+                .then(texto => {
+
+                    document.getElementById('paragrafo1').innerText = texto.paragrafo1
+                    document.getElementById('paragrafo2').innerText = texto.paragrafo2
+                    document.getElementById('paragrafo3').innerText = texto.paragrafo3
+                    document.getElementById('paragrafo4').innerText = texto.paragrafo4
+                    document.getElementById('paragrafo5').innerText = texto.paragrafo5
+                })
+                .catch(error => console.error('Erro buscando textos:', error));
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif:opsz@12..24&display=swap');
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            background: #EEE1FF;
+        }
+
+        .conteudos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            margin: 0;
+            margin-top: 110px;
+
+        }
+
+        .conteudo {
+            padding: 1em;
+            border: 1px solid #ccc;
+            margin-bottom: 1em;
+            color: black;
+            background-color: #ffffff10;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 25px;
+            width: 300px;
+            border: 2px solid #ffffff20;
+            backdrop-filter: blur(10px);
+            font-family: 'Hedvig Letters Serif', serif;
+
+        }
+
+        #idiomas {
+            margin-top: 1em;
+            justify-content: right;
+            display: flex;
+        }
+
+        button,
+        img {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            margin: 10px;
+            margin-top: 20px;
+            margin-right: 25px;
+            width: 70px;
+            border: none;
+            text-decoration: none;
+            background-color:#EEE1FF;
+        }
+
+        header {
+            width: 98%;
+            justify-content: right;
+            padding: 10px;
+            background-color: #EEE1FF;
+        }
+
+        .imagem {
+            height: 150px;
+            width: 150px;
+            position: absolute;
+            margin-left: 25px;
+        }
+    </style>
+</body>
+
+</html>
